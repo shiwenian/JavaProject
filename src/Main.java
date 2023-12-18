@@ -14,110 +14,22 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
 
         Boolean validOption = true;
-
+        Boolean returnToStartingMenu = false;
         Display display = new Display();
         MenuHandling menu = new MenuHandling();
         Scanner scanner = new Scanner(System.in);
 
-
-        do {
-            validOption = true;
-            display.StartingMenu();
-
-            try {
-                // do all processing here
-                inputSelectionValue = scanner.nextInt();
-
-                if (inputSelectionValue < 1 || inputSelectionValue > 2) {
-                    System.out.println("Invalid option selected, please try again.");
-                    TimeUnit.MILLISECONDS.sleep(500);
-                    validOption = false;
-                    scanner.nextLine();
-                }
-
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid option selected, please try again.");
-                TimeUnit.MILLISECONDS.sleep(500);
-                validOption = false;
-                scanner.nextLine();
-            }
-
-        } while (!validOption);
-
-        switch (inputSelectionValue) {
-            case 1:
-                scanner.nextLine();
-                do {
-                    validOption = true;
-                    Boolean success = false;
-
-                    // Admin ID: admin | Admin Password: 12345
-                    System.out.println("\nEnter Admin ID or '-999' to exit: \n");
-                    String username = scanner.nextLine();
-
-                    if (username.equals("-999")) {
-                        System.out.println("\nExiting...");
-                        TimeUnit.MILLISECONDS.sleep(500);
-                        System.out.println("..");
-                        TimeUnit.MILLISECONDS.sleep(500);
-                        System.out.println(".");
-                        TimeUnit.MILLISECONDS.sleep(500);
-                        main(args);
-                        break;
-                    } else {
-                        TimeUnit.MILLISECONDS.sleep(500); // This feature must be used along with "throws InterruptedException".
-
-                        try {
-
-                            System.out.println("Enter password: \n");
-
-                            inputSelectionValue = scanner.nextInt();
-
-                            success = menu.ValidateLogin(inputSelectionValue, username);
-                            if (success)
-                                isAdmin = true;
-                            else
-                            {
-                                validOption = false;
-                                scanner.nextLine();
-                            }
-
-                        } catch (InputMismatchException e) {
-                            System.out.println("\nInvalid login details, please try again.\n");
-                            TimeUnit.MILLISECONDS.sleep(500);
-                            validOption = false;
-                            scanner.nextLine();
-                            success = false;
-                        }
-                    }
-
-                } while (!validOption);
-
-            break;
-
-            case 2:
-                isAdmin = false;
-                scanner.nextLine();
-                break;
-        }
-
-        // Process Admin or User Menu
-        if (isAdmin) {
-            display.AdminMenu();
-        } 
-        else 
+        do
         {
-            inputSelectionValue = 0;
-            UtilitiesForSystem.ClearScreen();
             do {
                 validOption = true;
-                display.UserMenu();
+                display.StartingMenu();
 
                 try {
                     // do all processing here
                     inputSelectionValue = scanner.nextInt();
 
-                    if (inputSelectionValue < 1 || inputSelectionValue > 3) {
+                    if (inputSelectionValue < 1 || inputSelectionValue > 2) {
                         System.out.println("Invalid option selected, please try again.");
                         TimeUnit.MILLISECONDS.sleep(500);
                         validOption = false;
@@ -133,16 +45,107 @@ public class Main {
 
             } while (!validOption);
 
-            
+            returnToStartingMenu = menu.AdminLoginMenuHandling(inputSelectionValue);
+
+        }while(returnToStartingMenu);
+        
+
+        // Process Admin or User Menu
+        if (isAdmin) {
+            display.AdminMenu();
+        } 
+        else 
+        {
+            Boolean backToMenu = false;
+            do
+            {
+                int userMenuSelection = 0;
+                UtilitiesForSystem.ClearScreen();
+                do {
+                    validOption = true;
+                    display.UserMenu();
+
+                    try {
+                        userMenuSelection = scanner.nextInt();
+
+                        if (inputSelectionValue < 1 || inputSelectionValue > 4) {
+                            System.out.println("Invalid option selected, please try again.");
+                            TimeUnit.MILLISECONDS.sleep(500);
+                            validOption = false;
+                            scanner.nextLine();
+                        }
+
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid option selected, please try again.");
+                        TimeUnit.MILLISECONDS.sleep(500);
+                        validOption = false;
+                        scanner.nextLine();
+                    }
+
+                } while (!validOption);
+
+                switch (userMenuSelection) {
+                    case 1: //View Geographical Information
+                    {
+                        break;
+                    }
+                    case 2: //View Educational Material
+                    {
+                        break;
+                    }
+                    case 3: //SDDG13 Goals/Missions
+                    {
+                        break;
+                    }
+                    case 4: //Exit
+                    {
+                        System.out.println("\nExiting..");
+                        TimeUnit.MILLISECONDS.sleep(1000);
+                        backToMenu = true;
+                        break;
+                    }
+                    default:
+                        System.out.println("Please enter a valid option.");
+                        break;
+                }
+
+            } while(!backToMenu);
         }
 
         scanner.close();
-
-         //press 1 - Select Malaysia
-        //string inputStr = scanner
-        //display.DisplayClimateInformation(dataManager.GetCountryInfo(inputStr));
     }
 
-   
+    public static void PopulateData() {
+        // ClimateInformation newData = new ClimateInformation();
+
+        currentData.country = "Malaysia";
+        currentData.climateType = ClimateInformation.ClimateType.Tropical;
+        currentData.disasterType = ClimateInformation.DisasterType.Flood;
+    }
+
+    public static void SetClimateType(ClimateInformation data, int value) {
+        ClimateInformation.ClimateType climateType = null;
+
+        switch (value) {
+            case 1:
+                climateType = ClimateInformation.ClimateType.Continental;
+                break;
+            case 2:
+                climateType = ClimateInformation.ClimateType.Tropical;
+                break;
+            case 3:
+                climateType = ClimateInformation.ClimateType.Dry;
+                break;
+
+            default:
+                break;
+        }
+
+        data.climateType = climateType;
+    }
+
+    public static void SetDisasterType(ClimateInformation data, ClimateInformation.DisasterType disasterType) {
+        data.disasterType = disasterType;
+    }
 
 }
