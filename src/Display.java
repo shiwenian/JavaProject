@@ -24,7 +24,7 @@ public class Display {
 
     public void AdminMenu()
     {
-        System.out.println("\n");
+        System.out.println("================ ADMIN ================\n");
         System.out.println("[1] View Geographical Information"); // --> List of Countries (same as user menu) --> 1) Edit/Update 2) Delete 3) Exit
         System.out.println("[2] Exit ");
     }
@@ -46,8 +46,8 @@ public class Display {
 
     public void UserMenu()
     {
-        System.out.println("\n");
-        System.out.println("\n[1] View Geographical Information");
+        System.out.println("================ USER ================\n");
+        System.out.println("[1] View Geographical Information");
         System.out.println("[2] Explore Educational Materials"); //Leads to UserMenuEduMaterials() method that lists info on disasters/climate types/disaster-prevention.
         System.out.println("[3] SDG13 Vision & Goals"); //Describes the purpose and targets of SDG13.
 

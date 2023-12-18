@@ -6,10 +6,10 @@ import com.google.gson.Gson; //Google JSON Library for file storage
 public class Main {
 
     static ClimateInformation currentData = new ClimateInformation();
-    static UtilitiesForSystem util = new UtilitiesForSystem();
     static int inputSelectionValue = 0;
     static Boolean validOption = true;
     static Boolean isAdmin = false;
+    static DataManager dataManager = new DataManager();
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -107,8 +107,33 @@ public class Main {
         } 
         else 
         {
-            util.ClearScreen();
-            display.UserMenu();
+            inputSelectionValue = 0;
+            UtilitiesForSystem.ClearScreen();
+            do {
+                validOption = true;
+                display.UserMenu();
+
+                try {
+                    // do all processing here
+                    inputSelectionValue = scanner.nextInt();
+
+                    if (inputSelectionValue < 1 || inputSelectionValue > 3) {
+                        System.out.println("Invalid option selected, please try again.");
+                        TimeUnit.MILLISECONDS.sleep(500);
+                        validOption = false;
+                        scanner.nextLine();
+                    }
+
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid option selected, please try again.");
+                    TimeUnit.MILLISECONDS.sleep(500);
+                    validOption = false;
+                    scanner.nextLine();
+                }
+
+            } while (!validOption);
+
+            
         }
 
         scanner.close();
