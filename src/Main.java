@@ -8,141 +8,164 @@ public class Main {
     static ClimateInformation currentData = new ClimateInformation();
     static int inputSelectionValue = 0;
     static Boolean validOption = true;
-    static Boolean isAdmin = false;
     static DataManager dataManager = new DataManager();
+
+    enum State {
+        HOME,
+        ADMIN,
+        USER,
+        EXIT
+    }
 
     public static void main(String[] args) throws InterruptedException {
 
         Boolean validOption = true;
-
+        State currentState = State.HOME;
         Display display = new Display();
         MenuHandling menu = new MenuHandling();
         Scanner scanner = new Scanner(System.in);
 
+        while (currentState != State.EXIT) {
+            switch (currentState) {
+                case State.HOME:
 
-        do {
-            validOption = true;
-            display.StartingMenu();
-
-            try {
-                // do all processing here
-                inputSelectionValue = scanner.nextInt();
-
-                if (inputSelectionValue < 1 || inputSelectionValue > 2) {
-                    System.out.println("Invalid option selected, please try again.");
-                    TimeUnit.MILLISECONDS.sleep(500);
-                    validOption = false;
-                    scanner.nextLine();
-                }
-
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid option selected, please try again.");
-                TimeUnit.MILLISECONDS.sleep(500);
-                validOption = false;
-                scanner.nextLine();
-            }
-
-        } while (!validOption);
-
-        switch (inputSelectionValue) {
-            case 1:
-                scanner.nextLine();
-                do {
-                    validOption = true;
-                    Boolean success = false;
-
-                    // Admin ID: admin | Admin Password: 12345
-                    System.out.println("\nEnter Admin ID or '-999' to exit: \n");
-                    String username = scanner.nextLine();
-
-                    if (username.equals("-999")) {
-                        System.out.println("\nExiting...");
-                        TimeUnit.MILLISECONDS.sleep(500);
-                        System.out.println("..");
-                        TimeUnit.MILLISECONDS.sleep(500);
-                        System.out.println(".");
-                        TimeUnit.MILLISECONDS.sleep(500);
-                        main(args);
-                        break;
-                    } else {
-                        TimeUnit.MILLISECONDS.sleep(500); // This feature must be used along with "throws InterruptedException".
+                    do {
+                        validOption = true;
+                        display.StartingMenu();
 
                         try {
-
-                            System.out.println("Enter password: \n");
-
+                            // do all processing here
                             inputSelectionValue = scanner.nextInt();
 
-                            success = menu.ValidateLogin(inputSelectionValue, username);
-                            if (success)
-                                isAdmin = true;
-                            else
-                            {
+                            if (inputSelectionValue < 1 || inputSelectionValue > 2) {
+                                System.out.println("Invalid option selected, please try again.");
+                                TimeUnit.MILLISECONDS.sleep(500);
                                 validOption = false;
                                 scanner.nextLine();
                             }
 
                         } catch (InputMismatchException e) {
-                            System.out.println("\nInvalid login details, please try again.\n");
+                            System.out.println("Invalid option selected, please try again.");
                             TimeUnit.MILLISECONDS.sleep(500);
                             validOption = false;
                             scanner.nextLine();
-                            success = false;
                         }
-                    }
 
-                } while (!validOption);
+                    } while (!validOption);
 
-            break;
+                    if (inputSelectionValue == 1) {
 
-            case 2:
-                isAdmin = false;
-                scanner.nextLine();
-                break;
-        }
+                        scanner.nextLine();
+                        do {
+                            validOption = true;
+                            Boolean success = false;
 
-        // Process Admin or User Menu
-        if (isAdmin) {
-            display.AdminMenu();
-        } 
-        else 
-        {
-            inputSelectionValue = 0;
-            UtilitiesForSystem.ClearScreen();
-            do {
-                validOption = true;
-                display.UserMenu();
+                            // Admin ID: admin | Admin Password: 12345
+                            System.out.println("\nEnter Admin ID or '-999' to exit: \n");
+                            String username = scanner.nextLine();
 
-                try {
-                    // do all processing here
-                    inputSelectionValue = scanner.nextInt();
+                            if (username.equals("-999")) {
+                                System.out.println("\nExiting...");
+                                TimeUnit.MILLISECONDS.sleep(500);
+                                System.out.println("..");
+                                TimeUnit.MILLISECONDS.sleep(500);
+                                System.out.println(".");
+                                TimeUnit.MILLISECONDS.sleep(500);
+                                validOption = false;
+                                break;
+                            } else {
+                                TimeUnit.MILLISECONDS.sleep(500);
 
-                    if (inputSelectionValue < 1 || inputSelectionValue > 3) {
-                        System.out.println("Invalid option selected, please try again.");
-                        TimeUnit.MILLISECONDS.sleep(500);
-                        validOption = false;
+                                try {
+
+                                    System.out.println("Enter password: \n");
+
+                                    inputSelectionValue = scanner.nextInt();
+
+                                    success = menu.ValidateLogin(inputSelectionValue, username);
+                                    if (success) {
+                                        currentState = State.ADMIN;
+                                    } else {
+                                        validOption = false;
+                                        scanner.nextLine();
+                                    }
+
+                                } catch (InputMismatchException e) {
+                                    System.out.println("\nInvalid login details, please try again.\n");
+                                    TimeUnit.MILLISECONDS.sleep(500);
+                                    validOption = false;
+                                    scanner.nextLine();
+                                    success = false;
+                                }
+                            }
+
+                        } while (!validOption);
+
+                    } else if (inputSelectionValue == 2) {
+                        currentState = State.USER;
                         scanner.nextLine();
                     }
 
-                } catch (InputMismatchException e) {
-                    System.out.println("Invalid option selected, please try again.");
-                    TimeUnit.MILLISECONDS.sleep(500);
-                    validOption = false;
-                    scanner.nextLine();
-                }
+                    break;
 
-            } while (!validOption);
+                case State.ADMIN:
+                    do {
+                        validOption = true;
+                        display.AdminMenu();
 
-            
+                        try {
+                            // do all processing here
+                            inputSelectionValue = scanner.nextInt();
+
+                            if (inputSelectionValue < 1 || inputSelectionValue > 2) {
+                                System.out.println("Invalid option selected, please try again.");
+                                TimeUnit.MILLISECONDS.sleep(500);
+                                validOption = false;
+                                scanner.nextLine();
+                            }
+
+                        } catch (InputMismatchException e) {
+                            System.out.println("Invalid option selected, please try again.");
+                            TimeUnit.MILLISECONDS.sleep(500);
+                            validOption = false;
+                            scanner.nextLine();
+                        }
+
+                    } while (!validOption);
+                    break;
+
+                case State.USER:
+                    do {
+                        validOption = true;
+                        display.UserMenu();
+
+                        try {
+                            // do all processing here
+                            inputSelectionValue = scanner.nextInt();
+
+                            if (inputSelectionValue < 1 || inputSelectionValue > 2) {
+                                System.out.println("Invalid option selected, please try again.");
+                                TimeUnit.MILLISECONDS.sleep(500);
+                                validOption = false;
+                                scanner.nextLine();
+                            }
+
+                        } catch (InputMismatchException e) {
+                            System.out.println("Invalid option selected, please try again.");
+                            TimeUnit.MILLISECONDS.sleep(500);
+                            validOption = false;
+                            scanner.nextLine();
+                        }
+
+                    } while (!validOption);
+                    break;
+                default:
+                    break;
+            }
         }
-
-        scanner.close();
-
-         //press 1 - Select Malaysia
-        //string inputStr = scanner
-        //display.DisplayClimateInformation(dataManager.GetCountryInfo(inputStr));
+        // press 1 - Select Malaysia
+        // string inputStr = scanner
+        // display.DisplayClimateInformation(dataManager.GetCountryInfo(inputStr));
     }
-
-   
 
 }

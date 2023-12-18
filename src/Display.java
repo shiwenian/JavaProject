@@ -1,6 +1,5 @@
 import java.util.concurrent.*; //Allows the use of TimeUnit.MILLISECONDS.sleep(500); //Time buffer to make program flow smoother.
 
-
 public class Display {
     
     public void StartingMenu()
@@ -50,6 +49,7 @@ public class Display {
         System.out.println("[1] View Geographical Information");
         System.out.println("[2] Explore Educational Materials"); //Leads to UserMenuEduMaterials() method that lists info on disasters/climate types/disaster-prevention.
         System.out.println("[3] SDG13 Vision & Goals"); //Describes the purpose and targets of SDG13.
+        System.out.println("[4] Exit\n");
 
     }
 

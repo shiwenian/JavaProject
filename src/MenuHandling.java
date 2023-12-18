@@ -7,7 +7,7 @@ public class MenuHandling {
     Boolean result = false;
 
      if(inputString.equals("admin") && inputValue == 12345) {
-      System.out.println("Successful Login!");
+      System.out.println("Successful Login!\n");
       TimeUnit.MILLISECONDS.sleep(500);
       result = true;
 
