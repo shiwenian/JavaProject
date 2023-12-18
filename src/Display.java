@@ -16,7 +16,6 @@ public class Display {
     public void AdminMenuLogin() throws InterruptedException
     {
         //default admin, 123456
-        
         System.out.println("Enter Admin ID: \n");
         TimeUnit.MILLISECONDS.sleep(500); //This feature must be used along with "throws InterruptedException".
         System.out.println("Enter Password: \n");
@@ -47,11 +46,10 @@ public class Display {
 
     public void UserMenu()
     {
-        System.out.println("\n================ USER ================\n");
+        System.out.println("================ USER ================\n");
         System.out.println("[1] View Geographical Information");
         System.out.println("[2] Explore Educational Materials"); //Leads to UserMenuEduMaterials() method that lists info on disasters/climate types/disaster-prevention.
         System.out.println("[3] SDG13 Vision & Goals"); //Describes the purpose and targets of SDG13.
-        System.out.println("[4] Exit\n");
 
     }
 
@@ -87,6 +85,15 @@ public class Display {
         System.out.println("----------------------------------------");    
         System.out.println("\t\tMALAYSIA");
         System.out.println("----------------------------------------");    
+    }
+
+    public void DisplayClimateInformation(ClimateInformation data)
+    {
+        System.out.println("Country: " + data.country);
+        System.out.println("Risk Level: " + data.risk.toString());
+        System.out.println("Disaster Type: " + data.disasterType.toString());
+        System.out.println("Climate Type: " + data.climateType.toString());
+        System.out.println("\n");
     }
     
 }
