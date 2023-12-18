@@ -6,6 +6,7 @@ import com.google.gson.Gson; //Google JSON Library for file storage
 public class Main {
 
     static ClimateInformation currentData = new ClimateInformation();
+    static UtilitiesForSystem util = new UtilitiesForSystem();
     static int inputSelectionValue = 0;
     static Boolean validOption = true;
     static Boolean isAdmin = false;
@@ -17,6 +18,7 @@ public class Main {
         Display display = new Display();
         MenuHandling menu = new MenuHandling();
         Scanner scanner = new Scanner(System.in);
+
 
         do {
             validOption = true;
@@ -95,6 +97,7 @@ public class Main {
 
             case 2:
                 isAdmin = false;
+                scanner.nextLine();
                 break;
         }
 
@@ -104,6 +107,7 @@ public class Main {
         } 
         else 
         {
+            util.ClearScreen();
             display.UserMenu();
         }
 
