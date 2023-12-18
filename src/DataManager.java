@@ -21,13 +21,13 @@ public class DataManager {
     Random random = new Random();
     int index;
 
-    String[] countryList = { "Malaysia", "China", "India", "America", "Africa" };
+    ClimateInformation.Country[] countries = ClimateInformation.Country.values();
     ClimateInformation.ClimateType[] climateTypes = ClimateInformation.ClimateType.values();
     ClimateInformation.DisasterType[] disasterTypes = ClimateInformation.DisasterType.values();
     ClimateInformation.Risk[] risk = ClimateInformation.Risk.values();
 
-    index = random.nextInt(countryList.length);
-    newData.country = countryList[index];
+    index = random.nextInt(countries.length);
+    newData.country = countries[index];
 
     index = random.nextInt(climateTypes.length);
     newData.climateType = climateTypes[index];
@@ -81,9 +81,9 @@ public class DataManager {
     }
   }
 
-  public ClimateInformation GetCountryInfo(String country) {
+  public ClimateInformation GetCountryInfo(ClimateInformation.Country country) {
     for (ClimateInformation climateInformation : climateInformationList) {
-      if (climateInformation.country.equals(country)) {
+      if (climateInformation.country == country) {
         return climateInformation;
       }
     }
@@ -135,10 +135,10 @@ public class DataManager {
     SaveToJSON(climateInformationList);
   }
 
-  public void RemoveData(String country)
+  public void RemoveData(ClimateInformation.Country country)
   {
     for (ClimateInformation climateInformation : climateInformationList) {
-      if (climateInformation.country.equals(country)) {
+      if (climateInformation.country == country) {
         climateInformationList.remove(climateInformation);
       }
     }
@@ -146,7 +146,7 @@ public class DataManager {
     SaveToJSON(climateInformationList);
   }
 
-  public void AddData(String country, ClimateInformation.Risk risk, ClimateInformation.ClimateType climateType, ClimateInformation.DisasterType disasterType)
+  public void AddData(ClimateInformation.Country country, ClimateInformation.Risk risk, ClimateInformation.ClimateType climateType, ClimateInformation.DisasterType disasterType)
   {
     ClimateInformation newData = new ClimateInformation();
 

@@ -27,7 +27,7 @@ public class Main {
 
         while (currentState != State.EXIT) {
             switch (currentState) {
-                case State.HOME:
+                case HOME:
 
                     do {
                         validOption = true;
@@ -108,7 +108,7 @@ public class Main {
 
                     break;
 
-                case State.ADMIN:
+                case ADMIN:
                     do {
                         validOption = true;
                         display.AdminMenu();
@@ -132,9 +132,10 @@ public class Main {
                         }
 
                     } while (!validOption);
+
                     break;
 
-                case State.USER:
+                case USER:
                     do {
                         validOption = true;
                         display.UserMenu();
@@ -166,6 +167,18 @@ public class Main {
         // press 1 - Select Malaysia
         // string inputStr = scanner
         // display.DisplayClimateInformation(dataManager.GetCountryInfo(inputStr));
+    }
+
+    public void ProcessAdminSelection(int value) {
+        switch (value) {
+            case 1:
+                
+                break;
+            case 2:
+
+                break;
+
+        }
     }
 
 }

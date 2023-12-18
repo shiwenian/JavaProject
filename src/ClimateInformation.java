@@ -1,7 +1,16 @@
 public class ClimateInformation
 {
-    public String country; 
-
+    public enum Country
+    {
+        Malaysia,
+        Africa,
+        China,
+        Greenland,
+        Canada,
+        United_Arab_Emirates,
+        America
+    }
+    public Country country;
 
     public enum Risk
     {
