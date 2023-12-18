@@ -86,5 +86,14 @@ public class Display {
         System.out.println("\t\tMALAYSIA");
         System.out.println("----------------------------------------");    
     }
+
+    public void DisplayClimateInformation(ClimateInformation data)
+    {
+        System.out.println("Country: " + data.country);
+        System.out.println("Risk Level: " + data.risk.toString());
+        System.out.println("Disaster Type: " + data.disasterType.toString());
+        System.out.println("Climate Type: " + data.climateType.toString());
+        System.out.println("\n");
+    }
     
 }

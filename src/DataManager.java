@@ -81,30 +81,50 @@ public class DataManager {
     }
   }
 
-  public ClimateInformation GetRiskInfo(ClimateInformation.Risk risk) {
+  public ClimateInformation GetCountryInfo(String country) {
+    for (ClimateInformation climateInformation : climateInformationList) {
+      if (climateInformation.country.equals(country)) {
+        return climateInformation;
+      }
+    }
+    return null;
+  }
+
+  public ArrayList<ClimateInformation> GetRiskInfo(ClimateInformation.Risk risk) {
+
+    ArrayList<ClimateInformation> list = new ArrayList<>();
+
     for (ClimateInformation climateInformation : climateInformationList) {
       if (climateInformation.risk == risk) {
-        return climateInformation;
+        list.add(climateInformation);
       }
     }
-    return null;
+    return list;
   }
 
-  public ClimateInformation GetDisasterInfo(ClimateInformation.DisasterType disasterType) {
+  public ArrayList<ClimateInformation> GetDisasterInfo(ClimateInformation.DisasterType disasterType) {
+
+    ArrayList<ClimateInformation> list = new ArrayList<>();
+
     for (ClimateInformation climateInformation : climateInformationList) {
       if (climateInformation.disasterType == disasterType) {
-        return climateInformation;
+        list.add(climateInformation);
       }
+
     }
-    return null;
+    return list;
   }
 
-  public ClimateInformation GetClimateTypeInfo(ClimateInformation.ClimateType climateType) {
+  public ArrayList<ClimateInformation> GetClimateTypeInfo(ClimateInformation.ClimateType climateType) {
+
+    ArrayList<ClimateInformation> list = new ArrayList<>();
+
     for (ClimateInformation climateInformation : climateInformationList) {
       if (climateInformation.climateType == climateType) {
-        return climateInformation;
+        list.add(climateInformation);
       }
+
     }
-    return null;
+    return list;
   }
 }

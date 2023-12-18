@@ -137,39 +137,12 @@ public class Main {
         }
 
         scanner.close();
+
+         //press 1 - Select Malaysia
+        //string inputStr = scanner
+        //display.DisplayClimateInformation(dataManager.GetCountryInfo(inputStr));
     }
 
-    public static void PopulateData() {
-        // ClimateInformation newData = new ClimateInformation();
-
-        currentData.country = "Malaysia";
-        currentData.climateType = ClimateInformation.ClimateType.Tropical;
-        currentData.disasterType = ClimateInformation.DisasterType.Flood;
-    }
-
-    public static void SetClimateType(ClimateInformation data, int value) {
-        ClimateInformation.ClimateType climateType = null;
-
-        switch (value) {
-            case 1:
-                climateType = ClimateInformation.ClimateType.Continental;
-                break;
-            case 2:
-                climateType = ClimateInformation.ClimateType.Tropical;
-                break;
-            case 3:
-                climateType = ClimateInformation.ClimateType.Dry;
-                break;
-
-            default:
-                break;
-        }
-
-        data.climateType = climateType;
-    }
-
-    public static void SetDisasterType(ClimateInformation data, ClimateInformation.DisasterType disasterType) {
-        data.disasterType = disasterType;
-    }
+   
 
 }
