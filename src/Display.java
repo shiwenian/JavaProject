@@ -46,6 +46,15 @@ public class Display {
         System.out.println("[7] America\n");
     }
 
+    public void AdminEditMenu()
+    {
+        System.out.println("Select category to edit");
+        System.out.println("[1] Risk Level"); 
+        System.out.println("[2] Climate Type"); 
+        System.out.println("[3] Disaster Type"); 
+        System.out.println("[4] Back\n");
+    }
+
     public void AdminMenuRiskLevel() 
     {
         System.out.println("Select a risk level");

@@ -67,14 +67,16 @@ public class DataManager {
 
       climateInformationList = new ArrayList<>(List.of(dataArray));
 
-      /*for (ClimateInformation data : climateInformationList) {
-        System.out.println("Country: " + data.country);
-        System.out.println("Risk Level: " + data.risk.toString());
-        System.out.println("Disaster Type: " + data.disasterType.toString());
-        System.out.println("Climate Type: " + data.climateType.toString());
-        System.out.println("\n");
-
-      }*/
+      /*
+       * for (ClimateInformation data : climateInformationList) {
+       * System.out.println("Country: " + data.country);
+       * System.out.println("Risk Level: " + data.risk.toString());
+       * System.out.println("Disaster Type: " + data.disasterType.toString());
+       * System.out.println("Climate Type: " + data.climateType.toString());
+       * System.out.println("\n");
+       * 
+       * }
+       */
 
     } catch (IOException e) {
       System.out.println("File not found");
@@ -128,15 +130,13 @@ public class DataManager {
     return list;
   }
 
-  //fully clears the database
-  public void ClearDatabase()
-  {
+  // fully clears the database
+  public void ClearDatabase() {
     climateInformationList.clear();
     SaveToJSON(climateInformationList);
   }
 
-  public void RemoveData(ClimateInformation.Country country)
-  {
+  public void RemoveData(ClimateInformation.Country country) {
     for (ClimateInformation climateInformation : climateInformationList) {
       if (climateInformation.country == country) {
         climateInformationList.remove(climateInformation);
@@ -146,8 +146,8 @@ public class DataManager {
     SaveToJSON(climateInformationList);
   }
 
-  public void AddData(ClimateInformation.Country country, ClimateInformation.Risk risk, ClimateInformation.ClimateType climateType, ClimateInformation.DisasterType disasterType)
-  {
+  public void AddData(ClimateInformation.Country country, ClimateInformation.Risk risk,
+      ClimateInformation.ClimateType climateType, ClimateInformation.DisasterType disasterType) {
     ClimateInformation newData = new ClimateInformation();
 
     newData.country = country;
@@ -159,4 +159,13 @@ public class DataManager {
     SaveToJSON(climateInformationList);
   }
 
+  public void UpdateData(ClimateInformation data) {
+
+    int index = climateInformationList.indexOf(data);
+
+    if (index != -1) {
+      climateInformationList.set(index, data);
+      SaveToJSON(climateInformationList);
+    }
+  }
 }
