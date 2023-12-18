@@ -16,7 +16,7 @@ public class DataManager {
   // for testing, if lazy to populate data.
   public void PopulateRandomData() {
 
-    ClimateInformation currentData = new ClimateInformation();
+    ClimateInformation newData = new ClimateInformation();
 
     Random random = new Random();
     int index;
@@ -27,18 +27,18 @@ public class DataManager {
     ClimateInformation.Risk[] risk = ClimateInformation.Risk.values();
 
     index = random.nextInt(countryList.length);
-    currentData.country = countryList[index];
+    newData.country = countryList[index];
 
     index = random.nextInt(climateTypes.length);
-    currentData.climateType = climateTypes[index];
+    newData.climateType = climateTypes[index];
 
     index = random.nextInt(disasterTypes.length);
-    currentData.disasterType = disasterTypes[index];
+    newData.disasterType = disasterTypes[index];
 
     index = random.nextInt(risk.length);
-    currentData.risk = risk[index];
+    newData.risk = risk[index];
 
-    climateInformationList.add(currentData);
+    climateInformationList.add(newData);
     SaveToJSON(climateInformationList);
   }
 
@@ -67,17 +67,17 @@ public class DataManager {
 
       climateInformationList = new ArrayList<>(List.of(dataArray));
 
-      for (ClimateInformation data : climateInformationList) {
+      /*for (ClimateInformation data : climateInformationList) {
         System.out.println("Country: " + data.country);
         System.out.println("Risk Level: " + data.risk.toString());
         System.out.println("Disaster Type: " + data.disasterType.toString());
         System.out.println("Climate Type: " + data.climateType.toString());
         System.out.println("\n");
 
-      }
+      }*/
 
     } catch (IOException e) {
-      e.printStackTrace();
+      System.out.println("File not found");
     }
   }
 
@@ -127,4 +127,36 @@ public class DataManager {
     }
     return list;
   }
+
+  //fully clears the database
+  public void ClearDatabase()
+  {
+    climateInformationList.clear();
+    SaveToJSON(climateInformationList);
+  }
+
+  public void RemoveData(String country)
+  {
+    for (ClimateInformation climateInformation : climateInformationList) {
+      if (climateInformation.country.equals(country)) {
+        climateInformationList.remove(climateInformation);
+      }
+    }
+
+    SaveToJSON(climateInformationList);
+  }
+
+  public void AddData(String country, ClimateInformation.Risk risk, ClimateInformation.ClimateType climateType, ClimateInformation.DisasterType disasterType)
+  {
+    ClimateInformation newData = new ClimateInformation();
+
+    newData.country = country;
+    newData.risk = risk;
+    newData.climateType = climateType;
+    newData.disasterType = disasterType;
+
+    climateInformationList.add(newData);
+    SaveToJSON(climateInformationList);
+  }
+
 }
