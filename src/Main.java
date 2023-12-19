@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.concurrent.*; //Allows the use of TimeUnit.MILLISECONDS.sleep(500); //Time buffer to make program flow smoother.
-import com.google.gson.Gson; //Google JSON Library for file storage
 
 public class Main {
 
@@ -26,7 +25,7 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
 
         Boolean validOption = true;
-        State currentState = State.ADMIN;
+        State currentState = State.HOME;
 
         while (currentState != State.EXIT) {
             switch (currentState) {
@@ -40,7 +39,7 @@ public class Main {
                             // do all processing here
                             inputSelectionValue = scanner.nextInt();
 
-                            if (inputSelectionValue < 1 || inputSelectionValue > 2) {
+                            if (inputSelectionValue < 1 || inputSelectionValue > 3) {
                                 System.out.println("Invalid option selected, please try again.");
                                 TimeUnit.MILLISECONDS.sleep(500);
                                 validOption = false;
@@ -108,6 +107,16 @@ public class Main {
                         currentState = State.USER;
                         scanner.nextLine();
                     }
+                    else if (inputSelectionValue == 3) {
+                        System.out.println("\nExitting Program...");
+                        TimeUnit.MILLISECONDS.sleep(500);
+                        System.out.println("..");
+                        TimeUnit.MILLISECONDS.sleep(500);
+                        System.out.println(".");
+                        TimeUnit.MILLISECONDS.sleep(500);
+                        currentState = State.EXIT;
+                        scanner.nextLine();
+                    }
 
                     break;
 
@@ -156,7 +165,7 @@ public class Main {
                             // do all processing here
                             inputSelectionValue = scanner.nextInt();
 
-                            if (inputSelectionValue < 1 || inputSelectionValue > 2) {
+                            if (inputSelectionValue < 1 || inputSelectionValue > 4) {
                                 System.out.println("Invalid option selected, please try again.");
                                 TimeUnit.MILLISECONDS.sleep(500);
                                 validOption = false;
@@ -168,6 +177,81 @@ public class Main {
                             TimeUnit.MILLISECONDS.sleep(500);
                             validOption = false;
                             scanner.nextLine();
+                        }
+
+                        switch (inputSelectionValue) {
+                            case 1:
+                                {
+                                    
+                                    break;
+                                }
+                            case 2:
+                                {
+                                    do
+                                    {
+                                      display.UserMenuEduMaterials();
+                                  
+                                      try {
+                                      int userInput = scanner.nextInt();
+                                  
+                                      if(userInput == 1)
+                                      {
+                                        display.EduMaterialsClimateType();
+                                        System.out.println("\nPress ENTER to continue..");
+                                        scanner.nextLine(); //Clears Input Buffer
+                                        scanner.nextLine(); //Waits for user to ENTER before continuing 
+                                        TimeUnit.MILLISECONDS.sleep(500);  
+                                      }
+                                  
+                                      else if (userInput == 2)
+                                      {
+                                  
+                                        display.EduMaterialsDisasterType();
+                                        System.out.println("\nPress ENTER to continue..");
+                                        scanner.nextLine(); //Clears Input Buffer
+                                        scanner.nextLine(); //Waits for user to ENTER before continuing 
+                                        TimeUnit.MILLISECONDS.sleep(500);  
+                                  
+                                      }
+                                  
+                                      else if (userInput == 3)
+                                      {                                 
+                                        display.EduMaterialsClimateChange();
+                                        System.out.println("\nPress ENTER to continue..");
+                                        scanner.nextLine(); //Clears Input Buffer
+                                        scanner.nextLine(); //Waits for user to ENTER before continuing 
+                                        TimeUnit.MILLISECONDS.sleep(500);                                     
+                                      }  
+                                      else
+                                      {
+                                        System.out.println("Please enter a valid input.");
+                                        TimeUnit.MILLISECONDS.sleep(500);
+                                        validOption = false;
+                                        scanner.nextLine();
+                                      }
+                                  
+                                      } catch (InputMismatchException e) {
+                                                                  System.out.println("Invalid option selected, please try again.");
+                                                                  TimeUnit.MILLISECONDS.sleep(500);
+                                                                  validOption = false;
+                                                                  scanner.nextLine();
+                                                              }
+                                  
+                                    } while(!validOption);
+                                    break;
+                                }
+                            case 3:
+                                {
+                                    
+                                    break;
+                                }
+                            case 4:
+                                {
+                                    
+                                    break;
+                                }
+                            default:
+                                break;
                         }
 
                     } while (!validOption);

@@ -7,7 +7,8 @@ public class Display {
         System.out.println("                CLIMATE ACTION PROGRAM                  ");
         System.out.println("========================================================");
         System.out.println("\n[1] ADMIN");
-        System.out.println("[2] USER\n");
+        System.out.println("[2] USER");
+        System.out.println("[3] QUIT\n");
 
     }
 
@@ -94,9 +95,10 @@ public class Display {
 
     public void UserMenuEduMaterials() // Info Panel for Educational Materials
     {
+        System.out.println("\n--------- EDUCATIONAL MATERIALS ---------");
         System.out.println("[1] Types of Climates");
         System.out.println("[2] Types of Disasters");
-        System.out.println("[3] Combating Climate Change: FAQ");
+        System.out.println("[3] Combating Climate Change: FAQ\n");
     }
 
     public void UserMenuCountryList() {
@@ -122,4 +124,72 @@ public class Display {
         System.out.println("\n");
     }
 
+    public void EduMaterialsClimateType()
+    {
+        {
+            System.out.println("\n--------------------- Types of Climates ---------------------\n");
+            System.out.println(">> Tropical");
+            System.out.println("High temperatures throughout the year, with minimal temperature variation. Consistent day length and abundant rainfall. Common vegetation includes tropical rainforests.\n");
+            System.out.println(">> Dry");
+            System.out.println("Low precipitation, resulting in arid or semi-arid conditions. Wide temperature variations between day and night. Vegetation varies from deserts to grasslands.\n");
+            System.out.println(">> Temperate");
+            System.out.println("Moderate temperatures with distinct seasons – warm summers and cool winters. Well-distributed rainfall throughout the year. Broadleaf deciduous forests, grasslands, and mixed forests are common.\n");
+            System.out.println(">> Continental");
+            System.out.println("Greater temperature extremes between summer and winter, with hot summers and cold winters. Precipitation varies but is often moderate. Vegetation can include deciduous and coniferous forests.\n");
+            System.out.println(">> Polar");
+            System.out.println(" Extremely cold temperatures, especially in winter, with little seasonal variation. Short summers with long days and long winters with extended darkness. Low precipitation, often in the form of snow. Tundra and polar deserts characterize the vegetation.\n");
+            }
+    }
+
+    public void EduMaterialsDisasterType()
+    {
+        System.out.println("\n--------------------- Types of Disasters ---------------------\n");
+        System.out.println(">> Flood");
+        System.out.println("Flooding occurs when water exceeds normal levels, submerging land. It can result from heavy rainfall, storm surges, dam failures, or rapid melting of snow.\n");
+        System.out.println(">> Drought");
+        System.out.println("Drought is an extended period of below-average rainfall, leading to water shortages. It can affect agriculture, water supplies, and ecosystems.\n");
+        System.out.println(">> Tornado");
+        System.out.println("Tornadoes are violent windstorms characterized by a twisting, funnel-shaped cloud. They form from powerful thunderstorms and can cause"); 
+        System.out.println("significant damage along their narrow path.\n");
+        System.out.println(">> Wildfire");
+        System.out.println("Wildfires are uncontrolled fires that spread rapidly through vegetation, often in forests or grasslands. They can be triggered by"); 
+        System.out.println("lightning, human activities, or a combination of factors.\n");
+        System.out.println(">> Earthquake");
+        System.out.println("Earthquakes are caused by the sudden release of energy in the Earth's crust, leading to the shaking of the ground. They can occur along"); 
+        System.out.println("fault lines or tectonic plate boundaries.\n");
+        System.out.println(">> Hurricane");
+        System.out.println("Hurricanes are powerful tropical cyclones with strong winds and heavy rainfall. They form over warm ocean waters and can bring about"); 
+        System.out.println("storm surges and intense rainfall.\n");
+        System.out.println(">> Cyclone");
+        System.out.println("Cyclones are the same meteorological phenomena as hurricanes but are referred to as cyclones in the Indian Ocean and some other regions."); 
+        System.out.println("They include both tropical cyclones and typhoons.\n");
+    }
+
+    public void EduMaterialsClimateChange()
+    {
+        System.out.println("\n---------------- Combating Climate Change : FAQ ----------------\n");
+        System.out.println("What can we do to combat climate change?");
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println(">> Reduce Greenhouse Gas Emissions:\n");
+        System.out.println("- Transition to renewable energy sources such as solar, wind, and hydro power.");
+        System.out.println("- Increase energy efficiency in buildings, transportation, and industries.\n");
+        System.out.println(">> Promote Sustainable Transportation:\n");
+        System.out.println("- Encourage the use of public transportation, cycling, and walking.");
+        System.out.println("- Support the development and use of electric vehicles.\n");
+        System.out.println(">> Raise Awareness and Education:\n");
+        System.out.println("- Educate yourself and others about climate change impacts and solutions.");
+        System.out.println("- Raise awareness in your community and among your social networks.\n");
+        System.out.println("How will climate change affect us?");
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("Temperature Increase: Global temperatures have risen, leading to more frequent and intense heatwaves. This warming contributes to various environmental changes, including"); 
+        System.out.println("melting ice caps and glaciers.\n");
+        System.out.println("Sea Level Rise: The warming of the planet is causing glaciers and polar ice caps to melt, contributing to rising sea levels. This poses a threat to low-lying coastal areas, leading to"); 
+        System.out.println("increased risks of flooding and saltwater intrusion.\n");
+        System.out.println("Ecosystem Disruption: Climate change is impacting ecosystems, leading to shifts in plant and animal habitats, changes in migration patterns, and disruptions to biodiversity. Some species"); 
+        System.out.println("may struggle to adapt, leading to population declines or even extinction.");
+        System.out.println("-----------------------------------------------------------------\n");
+    }
+
+
+    
 }
