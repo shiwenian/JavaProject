@@ -7,7 +7,7 @@ public class ClimateInformation
         China,
         Greenland,
         Canada,
-        United_Arab_Emirates,
+        Egypt,
         America
     }
     public Country country;

@@ -84,7 +84,10 @@ public class DataManager {
   }
 
   public ClimateInformation GetCountryInfo(ClimateInformation.Country country) {
-    for (ClimateInformation climateInformation : climateInformationList) {
+
+    List<ClimateInformation> copyList = new ArrayList<>(climateInformationList);
+
+    for (ClimateInformation climateInformation : copyList) {
       if (climateInformation.country == country) {
         return climateInformation;
       }
@@ -137,7 +140,12 @@ public class DataManager {
   }
 
   public void RemoveData(ClimateInformation.Country country) {
-    for (ClimateInformation climateInformation : climateInformationList) {
+
+    // System.out.println("Count "+ climateInformationList.size());
+
+    List<ClimateInformation> copyList = new ArrayList<>(climateInformationList);
+
+    for (ClimateInformation climateInformation : copyList) {
       if (climateInformation.country == country) {
         climateInformationList.remove(climateInformation);
       }
@@ -155,6 +163,11 @@ public class DataManager {
     newData.climateType = climateType;
     newData.disasterType = disasterType;
 
+    climateInformationList.add(newData);
+    SaveToJSON(climateInformationList);
+  }
+
+  public void AddData(ClimateInformation newData) {
     climateInformationList.add(newData);
     SaveToJSON(climateInformationList);
   }
