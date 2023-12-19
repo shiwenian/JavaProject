@@ -106,8 +106,7 @@ public class Main {
                     } else if (inputSelectionValue == 2) {
                         currentState = State.USER;
                         scanner.nextLine();
-                    }
-                    else if (inputSelectionValue == 3) {
+                    } else if (inputSelectionValue == 3) {
                         System.out.println("\nExitting Program...");
                         TimeUnit.MILLISECONDS.sleep(500);
                         System.out.println("..");
@@ -131,16 +130,19 @@ public class Main {
                             inputSelectionValue = scanner.nextInt();
 
                             if (inputSelectionValue < 1 || inputSelectionValue > 7) {
-                                System.out.println("Invalid option selected, please try again.\n");
+                                System.out.println("\nInvalid option selected, please try again.\n");
                                 TimeUnit.MILLISECONDS.sleep(500);
                                 validOption = false;
                                 scanner.nextLine();
                             }
 
                             else if (inputSelectionValue == 7) {
+                                System.out.println("\nReturning to main menu..");
+                                TimeUnit.MILLISECONDS.sleep(500);
+                                System.out.println(".\n");
+                                TimeUnit.MILLISECONDS.sleep(500);
                                 currentState = State.HOME;
                             } else {
-                                System.out.println("Selection " + inputSelectionValue);
                                 ProcessAdminSelection(inputSelectionValue);
                                 // scanner.nextLine();
                             }
@@ -157,6 +159,12 @@ public class Main {
                     break;
 
                 case USER:
+                    if (dataManager.climateInformationList != null) {
+
+                        dataManager.ReadFromJSON();
+                    } else {
+                        System.out.println("No countries data found. Populate the database first.");
+                    }
                     do {
                         validOption = true;
                         display.UserMenu();
@@ -180,76 +188,80 @@ public class Main {
                         }
 
                         switch (inputSelectionValue) {
-                            case 1:
-                                {
-                                    
-                                    break;
+                            case 1 /* VIEW GEO INFO */: {
+                                for (ClimateInformation countryData : dataManager.climateInformationList) {
+                                    display.DisplayClimateInformation(countryData);
                                 }
-                            case 2:
-                                {
-                                    do
-                                    {
-                                      display.UserMenuEduMaterials();
-                                  
-                                      try {
-                                      int userInput = scanner.nextInt();
-                                  
-                                      if(userInput == 1)
-                                      {
-                                        display.EduMaterialsClimateType();
-                                        System.out.println("\nPress ENTER to continue..");
-                                        scanner.nextLine(); //Clears Input Buffer
-                                        scanner.nextLine(); //Waits for user to ENTER before continuing 
-                                        TimeUnit.MILLISECONDS.sleep(500);  
-                                      }
-                                  
-                                      else if (userInput == 2)
-                                      {
-                                  
-                                        display.EduMaterialsDisasterType();
-                                        System.out.println("\nPress ENTER to continue..");
-                                        scanner.nextLine(); //Clears Input Buffer
-                                        scanner.nextLine(); //Waits for user to ENTER before continuing 
-                                        TimeUnit.MILLISECONDS.sleep(500);  
-                                  
-                                      }
-                                  
-                                      else if (userInput == 3)
-                                      {                                 
-                                        display.EduMaterialsClimateChange();
-                                        System.out.println("\nPress ENTER to continue..");
-                                        scanner.nextLine(); //Clears Input Buffer
-                                        scanner.nextLine(); //Waits for user to ENTER before continuing 
-                                        TimeUnit.MILLISECONDS.sleep(500);                                     
-                                      }  
-                                      else
-                                      {
-                                        System.out.println("Please enter a valid input.");
+
+                                scanner.nextLine();
+
+                                System.out.println("\nPress ENTER to continue...\n");
+                                scanner.nextLine();
+                                break;
+                            }
+                            case 2 /* VIEW EDUCATIONAL MATERIALS */: {
+                                do {
+                                    display.UserMenuEduMaterials();
+
+                                    try {
+                                        int userInput = scanner.nextInt();
+
+                                        if (userInput == 1) {
+                                            display.EduMaterialsClimateType();
+                                            System.out.println("\nPress ENTER to continue..");
+                                            scanner.nextLine(); // Clears Input Buffer
+                                            scanner.nextLine(); // Waits for user to ENTER before continuing
+                                            TimeUnit.MILLISECONDS.sleep(500);
+                                        }
+
+                                        else if (userInput == 2) {
+
+                                            display.EduMaterialsDisasterType();
+                                            System.out.println("\nPress ENTER to continue..");
+                                            scanner.nextLine(); // Clears Input Buffer
+                                            scanner.nextLine(); // Waits for user to ENTER before continuing
+                                            TimeUnit.MILLISECONDS.sleep(500);
+
+                                        }
+
+                                        else if (userInput == 3) {
+                                            display.EduMaterialsClimateChange();
+                                            System.out.println("\nPress ENTER to continue..");
+                                            scanner.nextLine(); // Clears Input Buffer
+                                            scanner.nextLine(); // Waits for user to ENTER before continuing
+                                            TimeUnit.MILLISECONDS.sleep(500);
+                                        } else {
+                                            System.out.println("Please enter a valid input.");
+                                            TimeUnit.MILLISECONDS.sleep(500);
+                                            validOption = false;
+                                            scanner.nextLine();
+                                        }
+
+                                    } catch (InputMismatchException e) {
+                                        System.out.println("Invalid option selected, please try again.");
                                         TimeUnit.MILLISECONDS.sleep(500);
                                         validOption = false;
                                         scanner.nextLine();
-                                      }
-                                  
-                                      } catch (InputMismatchException e) {
-                                                                  System.out.println("Invalid option selected, please try again.");
-                                                                  TimeUnit.MILLISECONDS.sleep(500);
-                                                                  validOption = false;
-                                                                  scanner.nextLine();
-                                                              }
-                                  
-                                    } while(!validOption);
-                                    break;
-                                }
-                            case 3:
-                                {
-                                    
-                                    break;
-                                }
-                            case 4:
-                                {
-                                    
-                                    break;
-                                }
+                                    }
+
+                                } while (!validOption);
+                                break;
+                            }
+                            case 3 /* VIEW SDG13 MISSION/GOALS */: {
+                                display.SDG13Goals();
+                                System.out.println("\nPress ENTER to continue..");
+                                scanner.nextLine(); // Clears Input Buffer
+                                scanner.nextLine(); // Waits for user to ENTER before continuing
+                                TimeUnit.MILLISECONDS.sleep(500);
+                                break;
+                            }
+                            case 4 /* EXIT */: {
+                                System.out.println("\nReturning to main menu..");
+                                TimeUnit.MILLISECONDS.sleep(500);
+                                System.out.println(".\n");
+                                TimeUnit.MILLISECONDS.sleep(500);
+                                currentState = State.HOME;
+                            }
                             default:
                                 break;
                         }
@@ -281,112 +293,30 @@ public class Main {
 
                 scanner.nextLine();
 
-                System.out.println("Press ENTER to continue");
+                System.out.println("\nPress ENTER to continue...\n");
                 scanner.nextLine();
                 break;
+
             case 2:
-                // Edit country info
-                display.AdminMenuCountryList();
 
-                try {
-                    inputSelectionValue = scanner.nextInt();
-                    countrySelected = CountrySelection(inputSelectionValue);
-                    Boolean validSelection = true;
-
-                    // Show current Country Information
-                    if (validSelection) {
-                        ClimateInformation dataToDisplay = dataManager.GetCountryInfo(countrySelected);
-                        if (dataToDisplay != null) {
-                            System.out.println("Current Information: \n");
-                            display.DisplayClimateInformation(dataToDisplay);
-                            display.AdminEditMenu();
-
-                            inputSelectionValue = scanner.nextInt();
-
-                            ProcessAdminEdit(dataToDisplay, inputSelectionValue);
-
-                        } else {
-                            System.out.println("Cannot find country in database\n");
-                        }
-                        scanner.nextLine();
-                    }
-
-                } catch (InputMismatchException e) {
-                    System.out.println("Invalid input, please try again.\n");
-                    TimeUnit.MILLISECONDS.sleep(500);
-                    scanner.nextLine();
-                }
-
-                break;
-            case 3:
-                // filter by risk level
-                // view all countries by risk level
-                display.AdminMenuRiskLevel();
-                inputSelectionValue = scanner.nextInt();
-
-                ArrayList<ClimateInformation> dataRiskLevel = FilterByRiskLevel(inputSelectionValue);
-                if (dataRiskLevel.size() != 0) {
-                    for (ClimateInformation climateInformation : dataRiskLevel) {
-                        display.DisplayClimateInformation(climateInformation);
-                    }
-                    scanner.nextLine();
-                } else {
-                    System.out.println("There is no available data");
-                }
-
-                break;
-            case 4:
-                // filter by climate type
-                display.AdminMenuClimateType();
-                inputSelectionValue = scanner.nextInt();
-
-                ArrayList<ClimateInformation> dataClimateType = FilterByClimateType(inputSelectionValue);
-                if (dataClimateType.size() != 0) {
-                    for (ClimateInformation climateInformation : dataClimateType) {
-                        display.DisplayClimateInformation(climateInformation);
-                    }
-                    scanner.nextLine();
-                } else {
-                    System.out.println("There is no available data");
-                }
-
-                break;
-            case 5:
-                // filter by disaster type
-                display.AdminMenuDisasterType();
-                inputSelectionValue = scanner.nextInt();
-
-                ArrayList<ClimateInformation> dataDisasterType = FilterByDisasterType(inputSelectionValue);
-                if (dataDisasterType.size() != 0) {
-                    for (ClimateInformation climateInformation : dataDisasterType) {
-                        display.DisplayClimateInformation(climateInformation);
-                    }
-                    scanner.nextLine();
-                } else {
-                    System.out.println("There is no available data");
-                }
-
-                break;
-
-            case 6:
                 // Add data by country type
-                display.AdminMenuCountryList();
+                display.AdminMenuAddCountryList();
                 inputSelectionValue = scanner.nextInt();
                 countrySelected = CountrySelection(inputSelectionValue);
 
                 if (countrySelected != null) {
-                    
+
                     ClimateInformation currentData = new ClimateInformation();
                     ClimateInformation.ClimateType climateType = null;
                     ClimateInformation.DisasterType disasterType = null;
                     ClimateInformation.Risk risk = null;
 
-                    //check if selected country already exist in database?
+                    // check if selected country already exist in database?
                     ClimateInformation temp = dataManager.GetCountryInfo(countrySelected);
-                    if(temp != null) 
-                    {   
-                        //The selected country already exist in database. return;
-                        System.out.println("This country already exist in the database.\n");
+                    if (temp != null) {
+                        // The selected country already exist in database. return;
+                        System.out.println("\nThis country already exist in the database.\n");
+                        TimeUnit.MILLISECONDS.sleep(500);
                         break;
                     }
 
@@ -425,7 +355,9 @@ public class Main {
                     }
 
                     // Confirmation before adding
-                    System.out.println("Add this information to database? Y/N \n");
+                    System.out.println("==========================================");
+                    System.out.println("Add this information to database? Y/N");
+                    System.out.println("==========================================\n");
 
                     currentData.country = countrySelected;
                     currentData.climateType = climateType;
@@ -441,11 +373,102 @@ public class Main {
                         // If all input is okay, finally add data to database
                         dataManager.AddData(currentData);
                     } else {
+                        System.out.println("Invalid input, please enter only 'Y' or 'N'!\n");
+                        TimeUnit.MILLISECONDS.sleep(500);
                         break;
                     }
 
-                } else {
+                }
+
+                break;
+
+            case 3:
+                // Edit country info
+                display.AdminMenuEditCountryList();
+
+                try {
+                    inputSelectionValue = scanner.nextInt();
+                    countrySelected = CountrySelection(inputSelectionValue);
+                    Boolean validSelection = true;
+
+                    // Show current Country Information
+                    if (validSelection) {
+                        ClimateInformation dataToDisplay = dataManager.GetCountryInfo(countrySelected);
+                        if (dataToDisplay != null) {
+                            System.out.println("Current Information: ");
+                            display.DisplayClimateInformation(dataToDisplay);
+                            display.AdminEditMenu();
+
+                            inputSelectionValue = scanner.nextInt();
+
+                            ProcessAdminEdit(dataToDisplay, inputSelectionValue);
+
+                        } else {
+                            System.out.println("Cannot find country in database..\n");
+                            TimeUnit.MILLISECONDS.sleep(500);
+                        }
+                        scanner.nextLine();
+                    }
+
+                } catch (InputMismatchException e) {
                     System.out.println("Invalid input, please try again.\n");
+                    TimeUnit.MILLISECONDS.sleep(500);
+                    scanner.nextLine();
+                }
+
+                break;
+            case 4:
+                // filter by risk level
+                // view all countries by risk level
+                display.AdminMenuRiskLevel();
+                inputSelectionValue = scanner.nextInt();
+
+                ArrayList<ClimateInformation> dataRiskLevel = FilterByRiskLevel(inputSelectionValue);
+                if (dataRiskLevel.size() != 0) {
+                    for (ClimateInformation climateInformation : dataRiskLevel) {
+                        display.DisplayClimateInformation(climateInformation);
+                    }
+                    System.out.println("\nPress ENTER to continue...\n");
+                    TimeUnit.MILLISECONDS.sleep(500);
+                    scanner.nextLine();
+                    scanner.nextLine();
+
+                } else {
+                    System.out.println("There is no available data..");
+                    TimeUnit.MILLISECONDS.sleep(500);
+                }
+
+                break;
+            case 5:
+                // filter by climate type
+                display.AdminMenuClimateType();
+                inputSelectionValue = scanner.nextInt();
+
+                ArrayList<ClimateInformation> dataClimateType = FilterByClimateType(inputSelectionValue);
+                if (dataClimateType.size() != 0) {
+                    for (ClimateInformation climateInformation : dataClimateType) {
+                        display.DisplayClimateInformation(climateInformation);
+                    }
+                    scanner.nextLine();
+                } else {
+                    System.out.println("There is no available data..");
+                    TimeUnit.MILLISECONDS.sleep(500);
+                }
+
+                break;
+            case 6:
+                // filter by disaster type
+                display.AdminMenuDisasterType();
+                inputSelectionValue = scanner.nextInt();
+
+                ArrayList<ClimateInformation> dataDisasterType = FilterByDisasterType(inputSelectionValue);
+                if (dataDisasterType.size() != 0) {
+                    for (ClimateInformation climateInformation : dataDisasterType) {
+                        display.DisplayClimateInformation(climateInformation);
+                    }
+                    scanner.nextLine();
+                } else {
+                    System.out.println("There is no available data..");
                     TimeUnit.MILLISECONDS.sleep(500);
                 }
 
@@ -491,12 +514,13 @@ public class Main {
                         System.out.println("Country Selected " + countrySelected);
                         dataManager.RemoveData(countrySelected);
                     } else {
-                        System.out.println("Invalid input, please try again.\n");
+                        System.out.println("\nInvalid input, please try again.\n");
                         TimeUnit.MILLISECONDS.sleep(500);
                         scanner.nextLine();
                     }
                 } else {
-                    System.out.println("Exiting, going back to admin menu\n");
+                    System.out.println("\nExiting, going back to admin menu\n");
+                    TimeUnit.MILLISECONDS.sleep(500);
                 }
                 break;
 

@@ -21,20 +21,29 @@ public class Display {
     }
 
     public void AdminMenu() {
-        System.out.println("================ ADMIN ================\n");
-        System.out.println("=========== Geographical Information =========\n");
-        System.out.println("Select a country to view further info or filter the list of countries..\n");
+        System.out.println("\n================ ADMIN ================\n");
         System.out.println("[1] View All Countries Geo Information"); // show all countries data
-        System.out.println("[2] Edit Country Information"); // Edit info
-        System.out.println("[3] Filter By Risk Level"); // LOW, MEDIUM, HIGH
-        System.out.println("[4] Filter By Climate Type"); // Tropical, Dry, Continental, etc..
-        System.out.println("[5] Filter By Disaster Type\n"); // Drought, Flood, Cyclone, etc..
-        System.out.println("[6] Add data by country ");
-        System.out.println("[7 Exit \n");
+        System.out.println("[2] Add Data by Country");
+        System.out.println("[3] Edit Country Information"); // Edit info
+        System.out.println("[4] Filter By Risk Level"); // LOW, MEDIUM, HIGH
+        System.out.println("[5] Filter By Climate Type"); // Tropical, Dry, Continental, etc..
+        System.out.println("[6] Filter By Disaster Type"); // Drought, Flood, Cyclone, etc..
+        System.out.println("[7] Exit \n");
     }
 
-    public void AdminMenuCountryList() {
-        System.out.println("Select a country\n");
+    public void AdminMenuAddCountryList() {
+        System.out.println("Select a country to add: \n");
+        System.out.println("[1] Malaysia");
+        System.out.println("[2] Africa");
+        System.out.println("[3] China");
+        System.out.println("[4] Greenland");
+        System.out.println("[5] Canada");
+        System.out.println("[6] United Arab Emirates");
+        System.out.println("[7] America\n");
+    }
+
+    public void AdminMenuEditCountryList() {
+        System.out.println("Select a country to edit: \n");
         System.out.println("[1] Malaysia");
         System.out.println("[2] Africa");
         System.out.println("[3] China");
@@ -45,7 +54,7 @@ public class Display {
     }
 
     public void AdminEditMenu() {
-        System.out.println("Select category to edit");
+        System.out.println("\nSelect category to edit: ");
         System.out.println("[1] Risk Level");
         System.out.println("[2] Climate Type");
         System.out.println("[3] Disaster Type");
@@ -54,7 +63,7 @@ public class Display {
     }
 
     public void AdminMenuRiskLevel() {
-        System.out.println("Select a risk level");
+        System.out.println("Select a risk level: \n");
         System.out.println("[1] Low");
         System.out.println("[2] Medium");
         System.out.println("[3] High\n");
@@ -62,17 +71,17 @@ public class Display {
     }
 
     public void AdminMenuClimateType() {
-        System.out.println("Select a climate type");
+        System.out.println("Select a climate type: \n");
         System.out.println("[1] Tropical");
         System.out.println("[2] Dry");
         System.out.println("[3] Temperate");
         System.out.println("[4] Continental");
-        System.out.println("[5] Polar");
+        System.out.println("[5] Polar\n");
 
     }
 
     public void AdminMenuDisasterType() {
-        System.out.println("Select a disaster type");
+        System.out.println("Select a disaster type: \n");
         System.out.println("[1] Flood");
         System.out.println("[2] Drought");
         System.out.println("[3] Tornado");
@@ -117,11 +126,11 @@ public class Display {
     }
 
     public void DisplayClimateInformation(ClimateInformation data) {
+        System.out.println("\n");
         System.out.println("Country: " + data.country);
         System.out.println("Risk Level: " + data.risk.toString());
         System.out.println("Disaster Type: " + data.disasterType.toString());
         System.out.println("Climate Type: " + data.climateType.toString());
-        System.out.println("\n");
     }
 
     public void EduMaterialsClimateType()
@@ -190,6 +199,30 @@ public class Display {
         System.out.println("-----------------------------------------------------------------\n");
     }
 
+    public void SDG13Goals()
+    {
 
-    
+        System.out.println("---------------- Sustainable Development Goal 13 (SDG13) ----------------");
+        System.out.println("\n================== Vision - Climate Action ==================\n");
+        System.out.println("Ensure a resilient and sustainable future for all, where the planet is protected from the adverse impacts of climate change, and"); 
+        System.out.println("societies thrive in a low-carbon, climate-resilient environment.\n");
+
+        System.out.println("================== SDG13 Goals/Mission ================== \n");
+        System.out.println("Mitigation of Greenhouse Gas Emissions: ");
+        System.out.println("------------------------------------------------");
+        System.out.println("Promote efforts to reduce global greenhouse gas emissions to limit the increase in global average temperature.");
+        System.out.println("Encourage the adoption of renewable energy sources and the phasing out of fossil fuels.\n");
+
+        System.out.println("Adaptation and Resilience: ");
+        System.out.println("------------------------------------------------");
+        System.out.println("Enhance adaptive capacity, strengthen resilience, and reduce vulnerability to the impacts of climate change.");
+        System.out.println("Implement strategies to adapt to changing climate conditions, especially in vulnerable and marginalized communities.\n");
+
+        System.out.println("Sustainable Development Integration: ");
+        System.out.println("------------------------------------------------");
+        System.out.println("Integrate climate change measures into national policies, strategies, and planning to promote sustainable development.");
+        System.out.println("Ensure that climate action supports and does not undermine efforts to achieve other Sustainable Development Goals.\n");
+
+    }
+
 }
